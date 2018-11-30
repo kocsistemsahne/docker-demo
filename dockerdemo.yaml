@@ -32,6 +32,6 @@ spec:
     spec:
       containers:
       - name: npmtest
-        image: 172.200.200.82:/private/npmtest:latest
+        image: 172.200.200.82/private/npmtest:latest
         ports:
         - containerPort: 3000
