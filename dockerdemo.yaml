@@ -1,0 +1,37 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    name: npmtest-service
+  name: npmtest-service
+spec:
+  ports:
+    - name: http
+      port: 3000
+      targetPort: 3000
+  selector:
+    app: npmtest
+  type: NodePort
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: npmtest
+  labels:
+    app: npmtest
+spec:
+  selector:
+    matchLabels:
+      app: npmtest
+  template:
+    metadata:
+      labels:
+        app: npmtest
+    spec:
+      containers:
+      - name: npmtest
+        image: 172.200.200.82:/private/npmtest:latest
+        ports:
+        - containerPort: 3000
